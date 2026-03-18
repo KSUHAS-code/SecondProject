@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Indian Premier League(IPL)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:
+radial-gradient(circle at 20% 20%,rgba(244,196,48,0.08),transparent 40%),
+radial-gradient(circle at 80% 80%,rgba(255,255,255,0.05),transparent 40%),
+linear-gradient(135deg,#050c1f,#020617);
+color:white;
+scroll-behavior:smooth;
+}
+
+header{
+background:rgba(10,15,35,0.7);
+backdrop-filter:blur(20px);
+padding:20px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:fixed;
+width:100%;
+z-index:1000;
+border-bottom:1px solid rgba(255,255,255,0.08);
+box-shadow:0 5px 25px rgba(0,0,0,0.4);
+}
+
+header h1{
+color:#f4c430;
+font-weight:800;
+letter-spacing:3px;
+font-size:20px;
+text-transform:uppercase;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:30px;
+font-weight:500;
+position:relative;
+transition:0.4s;
+}
+
+nav a.active{
+color:#f4c430;
+}
+
+nav a::after{
+content:'';
+position:absolute;
+left:0;
+bottom:-6px;
+width:0;
+height:2px;
+background:#f4c430;
+transition:0.4s;
+}
+
+nav a:hover::after{
+width:100%;
+}
+
+.page{
+display:none;
+min-height:100vh;
+padding:120px 8% 80px 8%;
+animation:fadeIn 0.7s ease;
+}
+
+.page:target{
+display:block;
+}
+
+#home{
+display:block;
+padding:0;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(30px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+.hero{
+height:100vh;
+background:url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e') center/cover no-repeat;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+position:relative;
+}
+
+.hero::before{
+content:'';
+position:absolute;
+width:100%;
+height:100%;
+background:linear-gradient(rgba(0,0,0,0.85),rgba(0,0,0,0.7));
+}
+
+.hero-content{
+position:relative;
+z-index:1;
+}
+
+.hero h2{
+font-size:60px;
+color:#f4c430;
+margin-bottom:20px;
+text-transform:uppercase;
+letter-spacing:2px;
+text-shadow:0 0 25px rgba(244,196,48,0.6);
+}
+
+.hero p{
+font-size:20px;
+max-width:750px;
+margin:auto;
+opacity:0.9;
+line-height:1.6;
+}
+
+.btn{
+display:inline-block;
+margin-top:35px;
+padding:15px 40px;
+background:linear-gradient(45deg,#f4c430,#ffdd70);
+color:#0b1c3d;
+text-decoration:none;
+border-radius:50px;
+font-weight:600;
+transition:0.4s;
+box-shadow:0 10px 30px rgba(244,196,48,0.4);
+cursor:pointer;
+}
+
+.btn:hover{
+transform:translateY(-5px) scale(1.05);
+box-shadow:0 15px 40px rgba(244,196,48,0.7);
+}
+
+h2{
+text-align:center;
+margin-bottom:60px;
+color:#f4c430;
+font-size:38px;
+letter-spacing:1px;
+text-transform:uppercase;
+text-shadow:0 0 15px rgba(244,196,48,0.5);
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:35px;
+}
+
+.card{
+background:rgba(255,255,255,0.06);
+backdrop-filter:blur(15px);
+padding:35px;
+border-radius:25px;
+text-align:center;
+transition:0.5s;
+border:1px solid rgba(255,255,255,0.1);
+box-shadow:0 15px 40px rgba(0,0,0,0.4);
+cursor:pointer;
+}
+
+.card:hover{
+transform:translateY(-15px) scale(1.03);
+border:1px solid rgba(244,196,48,0.4);
+box-shadow:0 20px 50px rgba(244,196,48,0.3);
+}
+
+.card img{
+width:100px;
+margin-bottom:20px;
+}
+
+.card h3{
+color:#f4c430;
+margin-bottom:10px;
+}
+
+.card p{
+font-size:14px;
+line-height:1.6;
+opacity:0.85;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:rgba(255,255,255,0.95);
+color:#0b1c3d;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 15px 40px rgba(0,0,0,0.4);
+}
+
+th{
+background:linear-gradient(45deg,#f4c430,#ffdd70);
+color:#0b1c3d;
+padding:18px;
+font-weight:700;
+}
+
+td{
+padding:16px;
+border-bottom:1px solid #ddd;
+}
+
+tr{
+transition:0.3s;
+}
+
+tr:hover{
+background:#fff8d6;
+}
+
+.contact-box{
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(15px);
+padding:60px;
+border-radius:25px;
+text-align:center;
+border:1px solid rgba(255,255,255,0.15);
+box-shadow:0 20px 50px rgba(0,0,0,0.4);
+}
+
+.contact-box p{
+margin:20px 0;
+font-size:18px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>INDIAN PREMIER LEAGUE(IPL)</h1>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#teams">Teams</a>
+<a href="#champions">Champions</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<div id="home" class="page">
+<section class="hero">
+<div class="hero-content">
+<h2>Where Champions Rise</h2>
+<p>The world's most electrifying T20 league uniting global superstars, iconic franchises and millions of passionate fans.</p>
+<a href="#teams" class="btn">Explore Teams</a>
+</div>
+</section>
+</div>
+
+<div id="teams" class="page">
+<h2>IPL Franchises</h2>
+
+<div class="grid">
+
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/en/2/2b/Chennai_Super_Kings_Logo.svg">
+<h3>Chennai Super Kings</h3>
+<p>Founded: 2008</p>
+<p>Home Ground: M. A. Chidambaram Stadium</p>
+<p>IPL Titles: 5</p>
+</div>
+
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/en/c/cd/Mumbai_Indians_Logo.svg">
+<h3>Mumbai Indians</h3>
+<p>Founded: 2008</p>
+<p>Home Ground: Wankhede Stadium</p>
+<p>IPL Titles: 5</p>
+</div>
+
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/en/4/4c/Kolkata_Knight_Riders_Logo.svg">
+<h3>Kolkata Knight Riders</h3>
+<p>Founded: 2008</p>
+<p>Home Ground: Eden Gardens</p>
+<p>IPL Titles: 3</p>
+</div>
+
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/5c/This_is_the_logo_for_Rajasthan_Royals%2C_a_cricket_team_playing_in_the_Indian_Premier_League_%28IPL%29.svg/500px-This_is_the_logo_for_Rajasthan_Royals%2C_a_cricket_team_playing_in_the_Indian_Premier_League_%28IPL%29.svg.png">
+<h3>Rajasthan Royals</h3>
+<p>Founded: 2008</p>
+<p>Home Ground: Sawai Mansingh Stadium</p>
+<p>IPL Titles: 1 (2008)</p>
+</div>
+
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/en/5/51/Sunrisers_Hyderabad_Logo.svg">
+<h3>Sunrisers Hyderabad</h3>
+<p>Founded: 2013</p>
+<p>Home Ground: Rajiv Gandhi Intl. Stadium</p>
+<p>IPL Titles: 1 (2016)</p>
+</div>
+
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/en/0/09/Gujarat_Titans_Logo.svg">
+<h3>Gujarat Titans</h3>
+<p>Founded: 2022</p>
+<p>Home Ground: Narendra Modi Stadium</p>
+<p>IPL Titles: 1 (2022)</p>
+</div>
+
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/en/d/d4/Royal_Challengers_Bengaluru_Logo.svg">
+<h3>Royal Challengers Bengaluru</h3>
+<p>Founded: 2008</p>
+<p>Home Ground: M. Chinnaswamy Stadium</p>
+<p>IPL Titles: 1 (2025)</p>
+</div>
+
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/en/2/2f/Delhi_Capitals.svg">
+<h3>Delhi Capitals</h3>
+<p>Founded: 2008</p>
+<p>Home Ground: Arun Jaitley Stadium</p>
+<p>Best Finish: Runners-up (2020)</p>
+</div>
+
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/en/d/d4/Punjab_Kings_Logo.svg">
+<h3>Punjab Kings</h3>
+<p>Founded: 2008</p>
+<p>Home Ground: PCA Stadium</p>
+<p>Best Finish: Runners-up (2014)</p>
+</div>
+
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/34/Lucknow_Super_Giants_Logo.svg/500px-Lucknow_Super_Giants_Logo.svg.png">
+<h3>Lucknow Super Giants</h3>
+<p>Founded: 2022</p>
+<p>Home Ground: Ekana Stadium</p>
+<p>Playoff Appearances: 2</p>
+</div>
+
+</div>
+</div>
+
+<div id="champions" class="page">
+<h2>IPL Champions (2008-2025)</h2>
+
+<table>
+<tr><th>Year</th><th>Winner</th></tr>
+<tr><td>2008</td><td>Rajasthan Royals</td></tr>
+<tr><td>2009</td><td>Deccan Chargers</td></tr>
+<tr><td>2010</td><td>Chennai Super Kings</td></tr>
+<tr><td>2011</td><td>Chennai Super Kings</td></tr>
+<tr><td>2012</td><td>Kolkata Knight Riders</td></tr>
+<tr><td>2013</td><td>Mumbai Indians</td></tr>
+<tr><td>2014</td><td>Kolkata Knight Riders</td></tr>
+<tr><td>2015</td><td>Mumbai Indians</td></tr>
+<tr><td>2016</td><td>Sunrisers Hyderabad</td></tr>
+<tr><td>2017</td><td>Mumbai Indians</td></tr>
+<tr><td>2018</td><td>Chennai Super Kings</td></tr>
+<tr><td>2019</td><td>Mumbai Indians</td></tr>
+<tr><td>2020</td><td>Mumbai Indians</td></tr>
+<tr><td>2021</td><td>Chennai Super Kings</td></tr>
+<tr><td>2022</td><td>Gujarat Titans</td></tr>
+<tr><td>2023</td><td>Chennai Super Kings</td></tr>
+<tr><td>2024</td><td>Kolkata Knight Riders</td></tr>
+<tr><td>2025</td><td>Royal Challengers Bengaluru</td></tr>
+</table>
+</div>
+
+<div id="contact" class="page">
+<h2>Contact IPL</h2>
+
+<div class="contact-box">
+<p>Email: ipl@mail.com</p>
+<p>Phone: +91 1234567890</p>
+</div>
+
+</div>
+
+<script>
+
+const navLinks=document.querySelectorAll("nav a");
+
+navLinks.forEach(link=>{
+link.addEventListener("click",()=>{
+navLinks.forEach(l=>l.classList.remove("active"));
+link.classList.add("active");
+});
+});
+
+const buttons=document.querySelectorAll(".btn");
+
+buttons.forEach(btn=>{
+btn.addEventListener("click",()=>{
+btn.style.transform="scale(0.95)";
+setTimeout(()=>{
+btn.style.transform="scale(1)";
+},150);
+});
+});
+
+const rows=document.querySelectorAll("table tr");
+
+rows.forEach(row=>{
+row.addEventListener("mouseover",()=>{
+row.style.background="#fff4c2";
+});
+row.addEventListener("mouseout",()=>{
+row.style.background="";
+});
+});
+
+</script>
+
+</body>
+</html>
